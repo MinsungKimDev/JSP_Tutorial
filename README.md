@@ -30,3 +30,20 @@ script.println("alert('비밀번호가 틀립니다.')");
 script.println("history.back()"); // 요부분
 script.println("</script>");
 ```
+
+### 5강 회원가입 페이지 디자인
+- join.jsp 작성
+- 성별 선택 라디오 버튼을 사용하려면 html로 다음과 같이 작성한다.
+- ※ 스타일은<b>bootstrap 3.3.7</b>버전이다 ※
+```html
+<div class="form-group" style="text-align: center;">
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="userGender" autocomplete="off" value="여자" checked>여자
+        </label>
+    </div>
+</div>
+```
