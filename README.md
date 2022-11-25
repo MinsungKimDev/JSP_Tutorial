@@ -99,7 +99,8 @@
 - login.jsp에서 로그인에 성공하였다면 회원의 세션을 만들어준다.
 - 그 다음 메인 페이지로 이동하도록 스크립트를 이용한다.
     ```java
-    session.getAttribute("userID", user.getUserID()); // 세션에 userID라는 항목에 user.getUserID()를 하여 값을 참조시킨다.
+    session.getAttribute("userID", user.getUserID()); 
+    // 세션에 userID라는 항목에 user.getUserID()를 하여 값을 참조시킨다.
     PrintWriter script = response.getWriter();
     script.println("<script>");
     script.println("location.href = 'main.jsp'");
@@ -119,7 +120,7 @@
 - jsp if문 사이에 html 태그를 끼워넣으면 조건을 만족할때만 html 태그가 표시된다.
     ```jsp
     <%
-		if(userID == null) { // 이 조건을 만족해야 아래 태그가 표시된다.	
+        if(userID == null) { // 이 조건을 만족해야 아래 태그가 표시된다.	
 	%>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
