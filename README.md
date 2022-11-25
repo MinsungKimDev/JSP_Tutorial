@@ -6,13 +6,19 @@
 - 이클립스에서 Dynamic Web Project를 생성하고 index.jsp 작성
 - 톰캣8.5 서버를 동작하여 index.jsp 페이지 띄우기
 
+---
+
 ### 2강  로그인 페이지 디자인
 - Bootstrap 3.3.7-dist를 프로젝트 폴더로 복사
 - Bootstrap을 이용하여 반응형 웹페이지 login.jsp 작성
 
+---
+
 ### 3강  회원 데이터베이스 구축하기
 - mysql 설치 및 User 테이블 생성, 더미데이터 1개 생성, 클래스 작성
 - 이런식으로 하나의 데이터를 관리하고 처리할 수 있는 기법을 JSP에서 구현한 것을 자바 빈즈라 한다.
+
+---
 
 ### 4강  로그인 기능 구현하기
 #### UserDAO.java 작성
@@ -63,6 +69,8 @@
     script.println("</script>");
     ```
 
+---
+
 ### 5강 회원가입 페이지 디자인
 #### join.jsp 작성
 - 성별 선택 라디오 버튼을 사용하려면 html로 다음과 같이 작성한다.
@@ -80,6 +88,8 @@
     </div>
     ```
 
+---
+
 ### 6강 회원가입 기능 구현하기
 #### joinAction.jsp 작성
 -  jsp파일에 User 객체의 나머지 멤버 모두 명시 (userName, userGender, userEmail)
@@ -93,6 +103,8 @@
     > 2. joinAction.jsp에서는 user 객체에 정보를 담아 UserDAO.join(user); 수행
     > 3. UserDAO.join 에서는 user의 정보를 SQL에 담아 SQL 실행 - DB에 등록
     > 4. 정상적으로 등록되었으면 login.jsp로 이동, 이미 존재하는 ID일경우 다시 join.jsp로 이동
+
+---
 
 ### 7강 접속한 회원 세션 관리하기
 #### 사용자 세션 생성하기
@@ -137,3 +149,5 @@
         }
     %>
     ```
+
+---
