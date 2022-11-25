@@ -151,3 +151,32 @@
     ```
 
 ---
+
+### 8강 게시판 메인 페이지 디자인
+#### bbs.jsp 파일 작성
+- main.jsp 파일을 복사하여 아래 내용을 추가하였다.
+    ```html
+    <div class="container">
+		<div class="row">
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: eeeeee; text-align: center;">번호</th>
+						<th style="background-color: eeeeee; text-align: center;">제목</th>
+						<th style="background-color: eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: eeeeee; text-align: center;">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2022-11-25</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		</div>
+	</div>
+    ```
