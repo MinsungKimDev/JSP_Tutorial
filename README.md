@@ -180,3 +180,12 @@
 		</div>
 	</div>
     ```
+
+---
+
+### 9강 게시판 데이터베이스 구축하기
+- Java resources에 bbs 패키지 생성
+- Bbs.java 작성, getter setter 작성
+- MySQL에 bbs 테이블 생성
+
+---
