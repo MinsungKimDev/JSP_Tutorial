@@ -93,3 +93,46 @@
     > 2. joinAction.jsp에서는 user 객체에 정보를 담아 UserDAO.join(user); 수행
     > 3. UserDAO.join 에서는 user의 정보를 SQL에 담아 SQL 실행 - DB에 등록
     > 4. 정상적으로 등록되었으면 login.jsp로 이동, 이미 존재하는 ID일경우 다시 join.jsp로 이동
+
+### 7강 접속한 회원 세션 관리하기
+#### 사용자 세션 생성하기
+- login.jsp에서 로그인에 성공하였다면 회원의 세션을 만들어준다.
+- 그 다음 메인 페이지로 이동하도록 스크립트를 이용한다.
+    ```java
+    session.getAttribute("userID", user.getUserID()); // 세션에 userID라는 항목에 user.getUserID()를 하여 값을 참조시킨다.
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("location.href = 'main.jsp'");
+    script.println("</script>");
+    ```
+
+#### logout.jsp 작성
+- logout.jsp에 접속할 경우 사용자의 세션을 해제한다.
+    ```java
+    session.invalidate();
+    ```
+- 그 다음 메인페이지로 이동하도록 스크립트를 작성한다.
+
+### main.jsp 수정
+- 이제 index.jsp에 접속하면 main.jsp에 접속하도록 코드 수정
+- main.jsp에서 사용자가 로그인 한 상태라면 우측 접속하기가 '로그인, 회원가입'이 아닌 '로그아웃'이 보이도록 코드 작성
+- jsp if문 사이에 html 태그를 끼워넣으면 조건을 만족할때만 html 태그가 표시된다.
+    ```jsp
+    <%
+		if(userID == null) { // 이 조건을 만족해야 아래 태그가 표시된다.	
+	%>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle"
+                    data-toggle="dropdown" role="button" aria-haspopup="true"
+                    aria-expanded="false">접속하기<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="login.jsp">로그인</a></li>
+                    <li><a href="join.jsp">회원가입</a></li>
+                </ul>
+            </li>
+        </ul>
+    <%
+        }
+    %>
+    ```
