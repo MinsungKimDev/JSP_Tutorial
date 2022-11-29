@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="bbs.Bbs" %>
+<%@ page import="bbs.BbsDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +25,25 @@
 			script.println("location.href = 'login.jsp'");
 			script.println("</script>");
 		}
+		int bbsID = 0;
+		if (request.getParameter("bbsID") != null) {
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
+		if(bbsID == 0) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 게시물 입니다.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		if(!userID.equals(bbs.getUserID())) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
 	%>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -40,61 +61,41 @@
 				<li><a href="main.jsp">메인</a></li>
 				<li class="active"><a href="bbs.jsp">게시판</a></li>
 			</ul>
-			<%
-				if(userID == null) {
-			%>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">접속하기<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="login.jsp">로그인</a></li>
-							<li><a href="join.jsp">회원가입</a></li>
-						</ul>
-					</li>
-				</ul>
-			<%
-				} else {
-			%>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">회원관리<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="logoutAction.jsp">로그아웃</a></li>
-						</ul>
-					</li>
-				</ul>				
-			<%
-				}
-			%>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">회원관리<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</nav>
 	
 	<div class="container">
 		<div class="row">
-			<form method="post" action="writeAction.jsp">
+			<form method="post" action="updateAction.jsp?bbsID=<%= bbsID %>">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시물 작성</th>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시물 수정</th>
 							
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50" value="<%= bbs.getBbsTitle() %>"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"><%= bbs.getBbsContent() %></textarea></td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="btn-group pull-right">
-					<a onClick="return confirm('정말로 취소하시겠습니까?')" href="bbs.jsp" class="btn btn-default">취소</a>
-					<input type="submit" class="btn btn-primary" value="저장">
+					<a onClick="return confirm('정말로 취소하시겠습니까?')" href="view.jsp?bbsID=<%= bbsID %>" class="btn btn-default">취소</a>
+					<input onClick="return confirm('정말로 수정하시겠습니까?')" type="submit" class="btn btn-primary" value="수정">
 				</div>
 			</form>
 		</div>

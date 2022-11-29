@@ -194,3 +194,34 @@
 - write.jsp 작성
 - BbsDAO.java 작성
 - writeAction.jsp 작성
+
+---
+
+### 11강 게시판 글 목록 기능 구현
+- bbs.jsp에 글 목록 기능구현
+
+---
+
+### 12강 게시판 글 보기 기능 구현하기
+- view.jsp 작성
+- request.Parameter("bbsID") 와 같이 queryString에서 값을 가져오는 방법 학습
+
+---
+
+### 13강 게시글 수정 및 삭제 기능
+- update.jsp 작성
+- updateAction.jsp 작성
+- 사용자 입력 내용 필터링 방법 학습
+```java
+    bbs.getBbsContent().replaceAll(" ", "&#38;nbsp;").replaceAll("<" , "&#38;lt;").replaceAll(">", "&#38;gt;").replaceAll("\n", "&lt;br>");
+```
+
+---
+
+### 14강 웹사이트 메인 페이지 디자인
+- 부트스트랩 carousol 사용
+
+---
+
+### 15강 프로젝트 완성 및 배포
+- 카페24 웹호스팅 서비스 이용방법 학습
