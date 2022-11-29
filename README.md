@@ -189,3 +189,8 @@
 - MySQL에 bbs 테이블 생성
 
 ---
+
+### 10강 글쓰기 기능 구현하기
+- write.jsp 작성
+- BbsDAO.java 작성
+- writeAction.jsp 작성
